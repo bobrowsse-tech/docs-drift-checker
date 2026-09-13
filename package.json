@@ -1,0 +1,98 @@
+{
+  "name": "docs-drift-checker",
+  "displayName": "Docs-to-Code Drift Checker",
+  "description": "Flags when a function's documented signature has quietly stopped matching its real implementation.",
+  "version": "0.1.0",
+  "publisher": "bobrowsse-tech",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "docs-drift-checkerContainer",
+          "title": "Docs-to-Code Drift Checker",
+          "icon": "$(book)"
+        }
+      ]
+    },
+    "views": {
+      "docs-drift-checkerContainer": [
+        {
+          "id": "docs-drift-checkerView",
+          "name": "Dashboard",
+          "type": "webview"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "docsDrift.scan",
+        "title": "Docs-to-Code Drift Checker: Scan Doc Comments"
+      },
+      {
+        "command": "docsDrift.viewMismatches",
+        "title": "Docs-to-Code Drift Checker: View Mismatches"
+      },
+      {
+        "command": "docsDrift.suppress",
+        "title": "Docs-to-Code Drift Checker: Suppress"
+      }
+    ],
+    "languageModelTools": [
+      {
+        "name": "check_docs_drift",
+        "tags": [
+          "docs-drift-checker"
+        ],
+        "toolReferenceName": "check_docs_drift",
+        "displayName": "Docs-to-Code Drift Checker — check_docs_drift",
+        "modelDescription": "Finds functions whose JSDoc/docstring no longer matches their actual signature (mismatched parameter names, types, or return type). Use this when the user asks to audit documentation accuracy.",
+        "canBeReferencedInPrompt": true,
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "scope": {
+              "type": "string",
+              "description": "Optional glob to limit the scan, e.g. 'src/api/**'. Omit to scan the whole workspace."
+            }
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "npm run check-types && node esbuild.js",
+    "check-types": "tsc --noEmit",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "vscode:prepublish": "npm run package",
+    "package": "npm run check-types && node esbuild.js --production",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@types/node": "^20.0.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.0",
+    "esbuild": "^0.24.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "typescript": "latest",
+    "comment-parser": "latest"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bobrowsse-tech/docs-drift-checker"
+  }
+}
