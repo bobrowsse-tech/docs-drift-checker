@@ -20,7 +20,7 @@ function createService(): DocsDriftService | undefined {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  const dashboard = new DashboardProvider(context.extensionUri);
+  const dashboard = new DashboardProvider();
   const diagnostics = vscode.languages.createDiagnosticCollection('docsDrift');
   context.subscriptions.push(diagnostics);
   context.subscriptions.push(

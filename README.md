@@ -1,24 +1,39 @@
-# Docs-to-Code Drift Checker
+# Docs Drift Checker
 
-Flags when a function’s JSDoc no longer matches its real TypeScript signature — renamed params, type drift, return-type changes.
+Flags JSDoc that no longer matches the TypeScript signature — renamed `@param`s, missing params, widened/narrowed `@returns` — as Problems diagnostics on the doc comment.
 
-1. **Scan Doc Comments** — structural compare of `@param` / `@returns` vs the live signature.
-2. **View Mismatches** — documented vs actual side-by-side with jump-to-source.
-3. **Suppress** — append to `.docsdrift-ignore` for intentional mismatches.
-
-Diagnostics land on the doc comment in the Problems panel. Behavioral docs drift is explicitly **out of scope for v1**.
-
-Agents can call `check_docs_drift` for a report-only list (suppress stays a human click).
-
-## Development
+## Install
 
 ```bash
+git clone https://github.com/bobrowsse-tech/docs-drift-checker.git
+cd docs-drift-checker
 npm install
-npm run watch
-npm run test:unit
+npm run package
+npx @vscode/vsce package --no-dependencies
+code --install-extension docs-drift-checker-0.1.0.vsix
 ```
 
-Press `F5` in VS Code to launch an Extension Development Host.
+Or press **F5** after `npm install`.
+
+## Use
+
+| Action | What it does |
+|---|---|
+| **Scan Docs Drift** | Walks documented functions under the workspace tsconfig |
+| **Open Mismatch** | Jumps to the JSDoc / signature |
+| **Suppress** | Appends an id to `.docsdrift-ignore` |
+
+Behavioral/doc-body drift is out of scope (v2). Agents can call `docs_drift_scan` (report-only).
+
+## How it’s built
+
+TypeScript Compiler API + esbuild; diagnostics use VS Code’s Problems panel with `--vscode-*` themed dashboard CSS.
+
+```bash
+npm run watch
+npm run test:unit
+npm run package
+```
 
 ## License
 
