@@ -8,6 +8,7 @@
     "vscode": "^1.95.0"
   },
   "categories": [
+    "Linters",
     "Other"
   ],
   "activationEvents": [],
@@ -100,5 +101,16 @@
   "galleryBanner": {
     "color": "#0E7490",
     "theme": "dark"
+  },
+  "keywords": [
+    "jsdoc",
+    "documentation",
+    "typescript",
+    "drift",
+    "linter"
+  ],
+  "homepage": "https://github.com/bobrowsse-tech/docs-drift-checker#readme",
+  "bugs": {
+    "url": "https://github.com/bobrowsse-tech/docs-drift-checker/issues"
   }
 }
