@@ -95,5 +95,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/bobrowsse-tech/docs-drift-checker"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#0E7490",
+    "theme": "dark"
   }
 }
