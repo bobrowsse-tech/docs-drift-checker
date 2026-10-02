@@ -2,8 +2,13 @@
   "name": "docs-drift-checker",
   "displayName": "Docs-to-Code Drift Checker",
   "description": "Flags when a function's documented signature has quietly stopped matching its real implementation.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "bobrowsse-tech",
+  "author": {
+    "name": "Bob Rowsse Walakira",
+    "email": "hello@bobrowsse.com",
+    "url": "https://bobrowsse.com"
+  },
   "engines": {
     "vscode": "^1.95.0"
   },
@@ -111,6 +116,7 @@
   ],
   "homepage": "https://github.com/bobrowsse-tech/docs-drift-checker#readme",
   "bugs": {
-    "url": "https://github.com/bobrowsse-tech/docs-drift-checker/issues"
+    "url": "https://github.com/bobrowsse-tech/docs-drift-checker/issues",
+    "email": "hello@bobrowsse.com"
   }
 }
